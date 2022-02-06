@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Cryptography_Algorithms
 {
@@ -28,7 +26,6 @@ namespace Cryptography_Algorithms
 
                         Console.WriteLine("\nEncrypted message: " + encryptedMessage);
                     }
-
                     else
                     {
                         Console.WriteLine(firstEncryptKey + " and 26 must be co-prime numbers.");
@@ -51,7 +48,6 @@ namespace Cryptography_Algorithms
 
                         Console.WriteLine("\nDecrypted message: " + decryptedMessage);
                     }
-
                     else
                     {
                         Console.WriteLine(firstDecryptKey + " and 26 must be co-prime numbers.");
