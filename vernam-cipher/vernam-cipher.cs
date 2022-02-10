@@ -65,12 +65,11 @@ namespace Cryptography_Algorithms
 
         static string Encrypt(char[] secretMessage, char[] key)
         {
-            char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
             char[] encryptedMessage = new char[secretMessage.Length];
 
             for (int i = 0; i < secretMessage.Length; i++)
             {
-                encryptedMessage[i] = alphabet[((Array.IndexOf(alphabet, key[i]) + Array.IndexOf(alphabet, secretMessage[i])) % 26)];
+                encryptedMessage[i] = Alphabet.alphabet[((Array.IndexOf(Alphabet.alphabet, key[i]) + Array.IndexOf(Alphabet.alphabet, secretMessage[i])) % 26)];
             }
 
             return new string(encryptedMessage);
@@ -78,15 +77,19 @@ namespace Cryptography_Algorithms
 
         static string Decrypt(char[] secretMessage, char[] key)
         {
-            char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
             char[] decryptedMessage = new char[secretMessage.Length];
 
             for (int i = 0; i < secretMessage.Length; i++)
             {
-                decryptedMessage[i] = alphabet[((Array.IndexOf(alphabet, secretMessage[i]) - Array.IndexOf(alphabet, key[i]) + 26) % 26)];
+                decryptedMessage[i] = Alphabet.alphabet[((Array.IndexOf(Alphabet.alphabet, secretMessage[i]) - Array.IndexOf(Alphabet.alphabet, key[i]) + 26) % 26)];
             }
 
             return new string(decryptedMessage);
         }
+    }
+
+    static class Alphabet
+    {
+        public static char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
     }
 }

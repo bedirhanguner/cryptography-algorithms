@@ -44,14 +44,13 @@ namespace Cryptography_Algorithms
 
         static string Encrypt(char[] secretMessage)
         {
-            char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
             //I used and random sample alphabet to encrypt and decrypt. Feel free to change it.
             char[] keyAlphabet = new char[] { 'g', 'o', 'v', 'a', 'y', 'p', 'q', 'i', 'r', 'x', 'f', 'c', 's', 'k', 'd', 'z', 'n', 'j', 't', 'm', 'w', 'l', 'u', 'h', 'b', 'e' };
             char[] encryptedMessage = new char[secretMessage.Length];
 
             for (int i = 0; i < secretMessage.Length; i++)
             {
-                encryptedMessage[i] = keyAlphabet[Array.IndexOf(alphabet, secretMessage[i])];
+                encryptedMessage[i] = keyAlphabet[Array.IndexOf(Alphabet.alphabet, secretMessage[i])];
             }
 
             return new string(encryptedMessage);
@@ -59,17 +58,21 @@ namespace Cryptography_Algorithms
 
         static string Decrypt(char[] secretMessage)
         {
-            char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
             //I used and random sample alphabet to encrypt and decrypt. Feel free to change it.
             char[] keyAlphabet = new char[] { 'g', 'o', 'v', 'a', 'y', 'p', 'q', 'i', 'r', 'x', 'f', 'c', 's', 'k', 'd', 'z', 'n', 'j', 't', 'm', 'w', 'l', 'u', 'h', 'b', 'e' };
             char[] decryptedMessage = new char[secretMessage.Length];
 
             for (int i = 0; i < secretMessage.Length; i++)
             {
-                decryptedMessage[i] = alphabet[Array.IndexOf(keyAlphabet, secretMessage[i])];
+                decryptedMessage[i] = Alphabet.alphabet[Array.IndexOf(keyAlphabet, secretMessage[i])];
             }
 
             return new string(decryptedMessage);
         }
+    }
+
+    static class Alphabet
+    {
+        public static char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
     }
 }

@@ -80,7 +80,6 @@ namespace Cryptography_Algorithms
 
         static string Encrypt(char[] secretMessage, int a, int b)
         {
-            char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
             char[] encryptedMessage = new char[secretMessage.Length];
 
             for (int i = 0; i < secretMessage.Length; i++)
@@ -88,7 +87,7 @@ namespace Cryptography_Algorithms
                 if (secretMessage[i] != ' ')
                 {
                     char letter = secretMessage[i];
-                    char newLetter = alphabet[((a * Array.IndexOf(alphabet, letter)) + b) % 26];
+                    char newLetter = Alphabet.alphabet[((a * Array.IndexOf(Alphabet.alphabet, letter)) + b) % 26];
 
                     encryptedMessage[i] = newLetter;
                 }
@@ -103,7 +102,6 @@ namespace Cryptography_Algorithms
 
         static string Decrypt(char[] secretMessage, int a, int b)
         {
-            char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
             char[] decryptedMessage = new char[secretMessage.Length];
             int inverseA = 0;
             int flag = 0;
@@ -123,7 +121,7 @@ namespace Cryptography_Algorithms
                 if (secretMessage[i] != ' ')
                 {
                     char letter = secretMessage[i];
-                    char newLetter = alphabet[inverseA * ((Array.IndexOf(alphabet, letter) + 26) - b) % 26];
+                    char newLetter = Alphabet.alphabet[inverseA * ((Array.IndexOf(Alphabet.alphabet, letter) + 26) - b) % 26];
 
                     decryptedMessage[i] = newLetter;
                 }
@@ -135,5 +133,10 @@ namespace Cryptography_Algorithms
 
             return new string(decryptedMessage);
         }
+    }
+
+    static class Alphabet
+    {
+        public static char[] alphabet = new char[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z' };
     }
 }
