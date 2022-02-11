@@ -50,6 +50,12 @@ namespace Cryptography_Algorithms
 
             for (int i = 0; i < secretMessage.Length; i++)
             {
+                if (secretMessage[i] == ' ')
+                {
+                    encryptedMessage[i] = ' ';
+                    i++;
+                }
+
                 encryptedMessage[i] = keyAlphabet[Array.IndexOf(Alphabet.alphabet, secretMessage[i])];
             }
 
@@ -64,6 +70,12 @@ namespace Cryptography_Algorithms
 
             for (int i = 0; i < secretMessage.Length; i++)
             {
+                if (secretMessage[i] == ' ')
+                {
+                    decryptedMessage[i] = ' ';
+                    i++;
+                }
+
                 decryptedMessage[i] = Alphabet.alphabet[Array.IndexOf(keyAlphabet, secretMessage[i])];
             }
 
