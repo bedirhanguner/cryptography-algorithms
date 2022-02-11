@@ -29,7 +29,7 @@ namespace Cryptography_Algorithms
                     {
                         Console.WriteLine("\nMessage and the key must have the same length.");
                     }
- 
+
                     break;
 
                 case 2:
@@ -55,7 +55,7 @@ namespace Cryptography_Algorithms
 
                 default:
                     Console.WriteLine("Enter a valid value.");
-                    
+
                     break;
 
             }
@@ -67,21 +67,32 @@ namespace Cryptography_Algorithms
         {
             char[] encryptedMessage = new char[secretMessage.Length];
 
-            for (int i = 0; i < secretMessage.Length; i++)
+            for (int i = 0, j =0; i < secretMessage.Length; i++,j++)
             {
-                encryptedMessage[i] = Alphabet.alphabet[((Array.IndexOf(Alphabet.alphabet, key[i]) + Array.IndexOf(Alphabet.alphabet, secretMessage[i])) % 26)];
+                if(secretMessage[i] == ' ')
+                {
+                    i++;
+                }
+
+                encryptedMessage[i] = Alphabet.alphabet[((Array.IndexOf(Alphabet.alphabet, key[j]) + Array.IndexOf(Alphabet.alphabet, secretMessage[i])) % 26)];
             }
 
-            return new string(encryptedMessage);
+            return new string (encryptedMessage);
         }
 
-        static string Decrypt(char[] secretMessage, char[] key)
+
+    static string Decrypt(char[] secretMessage, char[] key)
         {
             char[] decryptedMessage = new char[secretMessage.Length];
 
-            for (int i = 0; i < secretMessage.Length; i++)
+            for (int i = 0, j = 0; i < secretMessage.Length; i++, j++)
             {
-                decryptedMessage[i] = Alphabet.alphabet[((Array.IndexOf(Alphabet.alphabet, secretMessage[i]) - Array.IndexOf(Alphabet.alphabet, key[i]) + 26) % 26)];
+                if (secretMessage[i] == ' ')
+                {
+                    i++;
+                }
+
+                decryptedMessage[i] = Alphabet.alphabet[((Array.IndexOf(Alphabet.alphabet, secretMessage[i]) - Array.IndexOf(Alphabet.alphabet, key[j]) + 26) % 26)];
             }
 
             return new string(decryptedMessage);
