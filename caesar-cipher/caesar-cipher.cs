@@ -54,10 +54,13 @@ namespace Cryptography_Algorithms
 
             for (int i = 0; i < secretMessage.Length; i++)
             {
-                char letter = secretMessage[i];
-                char newLetter = Alphabet.alphabet[(key + Array.IndexOf(Alphabet.alphabet, letter)) % 26];
+                if(secretMessage[i] == ' ')
+                {
+                    encryptedMessage[i] = ' ';
+                    i++;
+                }
 
-                encryptedMessage[i] = newLetter;
+                encryptedMessage[i] = Alphabet.alphabet[(key + Array.IndexOf(Alphabet.alphabet, secretMessage[i])) % 26];
             }
 
             return new string(encryptedMessage);
@@ -69,10 +72,13 @@ namespace Cryptography_Algorithms
 
             for (int i = 0; i < secretMessage.Length; i++)
             {
-                char letter = secretMessage[i];
-                char newLetter = Alphabet.alphabet[(Array.IndexOf(Alphabet.alphabet, letter) - key) % 26];
+                if (secretMessage[i] == ' ')
+                {
+                    decryptedMessage[i] = ' ';
+                    i++;
+                }
 
-                decryptedMessage[i] = newLetter;
+                decryptedMessage[i] = Alphabet.alphabet[(key + Array.IndexOf(Alphabet.alphabet, secretMessage[i])) % 26]
             }
 
             return new string(decryptedMessage);
